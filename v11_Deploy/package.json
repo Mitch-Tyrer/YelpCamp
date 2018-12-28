@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/Mitch-Tyrer/YelpCamp.git"
+    "url": "git+ssh:git@github.com/Mitch-Tyrer/YelpCamp.git"
   },
   "author": "Mitch Tyrer",
   "license": "ISC",
