@@ -5,31 +5,11 @@ var express = require("express"),
     Campground = require("./models/campground"),
     seedDB = require("./seeds");
     
-
-seedDB();
-mongoose.connect("mongodb://localhost:27017/yelp_camp", { useNewUrlParser: true });
-
-
-
-// Campground.create(
-//     {
-//         name: "Crested Butte", 
-//         image: "https://static.evo.com/content/travel-guides/colorado/crested%20butte/matt_bergland_cbmr_moon_over_town_4c_detail.jpg",
-//         description: "A favortie Colorado campground that is often too crowded for it's own good."
-        
-//     }, function(err, campground){
-//     if(err){
-//         console.log(err);
-//     } else {
-//         console.log("new site");
-//         console.log(campground);
-//     }
-        
-// });
-
+mongoose.connect("mongodb://localhost:27017/yelp_camp_v3", { useNewUrlParser: true });
 app.use(bodyParser.urlencoded({extended: true}));
-
 app.set("view engine", "ejs");
+seedDB();
+
 
 app.get("/", function(req, res){
     res.render("home");
@@ -67,10 +47,11 @@ app.get("/campgrounds/new", function(req, res){
 
 
 app.get("/campgrounds/:id", function(req, res) {
-    Campground.findById(req.params.id, function(err, foundCampground){
+    Campground.findById(req.params.id).populate("comments").exec(function(err, foundCampground){
      if(err){
          console.log(err);
      }   else {
+         console.log(foundCampground);
          res.render("show", {campground: foundCampground});
      }
     });
