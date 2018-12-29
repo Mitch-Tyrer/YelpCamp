@@ -16,7 +16,8 @@ var express = require("express"),
 var commentRoutes = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes = require("./routes/index");
-    
+ 
+///DATABASE ENV VARIABLE FOR HEROKU   
 var url = process.env.DATABASEURL || "mongodb://localhost:27017/yelp_camp_v9";
 
 mongoose.connect(url, { useNewUrlParser: true });
